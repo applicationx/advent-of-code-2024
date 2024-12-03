@@ -12,6 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      checks: write
+      contents: read
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -36,9 +40,8 @@ jobs:
       - name: Run tests
         run: mvn test
 
-      - name: Display test results
-        run: |
-          for file in $(find . -name 'TEST-*.xml'); do
-            echo "Test results for $file:"
-            cat $file
-          done
+      - name: Surefire Report
+        if: success() || failure()
+        uses: ScaCap/action-surefire-report@v1.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
