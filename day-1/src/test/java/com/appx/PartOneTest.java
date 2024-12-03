@@ -10,15 +10,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
-public class PartOneTest {
-
-
-    @Test
-    public void test() {
-        System.out.println("Hello, World!");
-    }
+class PartOneTest {
 
     @Test
     public void canReadFile() throws IOException {

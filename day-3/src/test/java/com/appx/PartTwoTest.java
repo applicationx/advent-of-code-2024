@@ -2,14 +2,13 @@ package com.appx;
 
 import com.appx.converter.ExpressionConverter;
 import com.appx.file.ResourcesReader;
-import com.appx.model.Do;
-import com.appx.model.Dont;
-import com.appx.model.Mul;
+import com.appx.processor.StateAwareCalculator;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Collection;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 class PartTwoTest {
@@ -18,23 +17,11 @@ class PartTwoTest {
     void addTogetherMulValues() throws IOException {
         ResourcesReader reader = new ResourcesReader();
         var result = reader.stream("input.txt")
-                .map(ExpressionConverter::toMuls)
+                .map(ExpressionConverter::toExpressions)
                 .flatMap(Collection::stream)
-                .collect(toList());
+                .collect(collectingAndThen(toList(), StateAwareCalculator::getResultValue));
 
-        boolean isDo = true;
-        long resultValue = 0;
-        for (var expression : result) {
-            switch (expression) {
-                case Do() -> isDo = true;
-                case Dont() -> isDo = false;
-                case Mul(int x, int y) -> {
-                    if (isDo) {
-                        resultValue += x * y;
-                    }
-                }
-            }
-        }
-        System.out.println("Result: " + resultValue);
+        System.out.println("Result: " + result);
     }
+
 }

@@ -13,7 +13,7 @@ public class ExpressionConverter {
     private static final Pattern EXPRESSION_PATTERN =
             Pattern.compile("(mul\\((\\d+),(\\d+)\\)|do\\(\\)|don't\\(\\))");
 
-    public static List<Expression> toMuls(String line) {
+    public static List<Expression> toExpressions(String line) {
         Matcher matcher = EXPRESSION_PATTERN.matcher(line);
         return Stream.generate(matcher::find)
                 .takeWhile(b -> b).map(__ -> {
