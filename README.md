@@ -33,3 +33,11 @@ This repository organizes solutions by day and uses tests to validate solutions 
 │   ├── src/main/java   # Reusable components (e.g., input parsers, helpers)
 │   └── ...
 └── README.md           # You're here!
+``` 
+
+Each day’s solutions are verified using tests:
+-	PartOneTest validates the solution for Part 1 of the puzzle.
+-	PartTwoTest validates the solution for Part 2 of the puzzle.
+
+This structure keeps solutions clean, modular, and testable.
+
