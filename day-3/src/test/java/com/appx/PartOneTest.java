@@ -8,19 +8,22 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Collection;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class PartOneTest {
+
+    public static final long EXPECTED = 185797128L;
 
     @Test
     void addTogetherMulValues() throws IOException {
         ResourcesReader reader = new ResourcesReader();
-        var result = reader.stream("input.txt")
+        assertThat(reader.stream("input.txt")
                 .map(MulConverter::toMuls)
                 .flatMap(Collection::stream)
                 .map(Mul::result)
                 .mapToInt(Integer::intValue)
-                .sum();
-
-
-        System.out.println("Result: " + result);
+                .sum())
+                .as("The sum of the results of the muls")
+                .isEqualTo(EXPECTED);
     }
 }

@@ -8,16 +8,18 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class PartTwoTest {
 
+    public static final int EXPECTED = 531;
+
     @Test
-    void summarizeSafeLevels() throws IOException {
+    void summarizeSafeLevels_WithDampeners() throws IOException {
         ResourcesReader reader = new ResourcesReader();
-        long count = reader.stream("input.txt")
+        assertThat(reader.stream("input.txt")
                 .map(RowConverter::toRow)
                 .filter(Row::isSafeWithDampener)
-                .count();
-
-        System.out.println("Safe levels: " + count);
+                .count()).as("The number of safe levels with dampener").isEqualTo(EXPECTED);
     }
 }

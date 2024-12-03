@@ -11,10 +11,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class PartOneTest {
 
+    public static final int EXPECTED = 1830467;
+
     @Test
-    public void canReadFile() throws IOException {
+    public void totalDistance() throws IOException {
         ResourcesReader reader = new ResourcesReader();
         TwoLists twoLists = reader.stream("input.txt")
                 .map(RowConverter::toRow)
@@ -26,8 +30,10 @@ class PartOneTest {
         firstList.sort(Integer::compareTo);
         secondList.sort(Integer::compareTo);
 
-        System.out.println("Difference: " + StreamUtils.zip(firstList.stream(), secondList.stream(), (a, b) -> Math.abs(a - b))
+        assertThat(StreamUtils.zip(firstList.stream(), secondList.stream(), (a, b) -> Math.abs(a - b))
                 .mapToInt(Integer::intValue)
-                .sum());
+                .sum())
+                .as("The sum of the differences between the two lists")
+                .isEqualTo(EXPECTED);
     }
 }
