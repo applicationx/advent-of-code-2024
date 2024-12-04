@@ -1,7 +1,6 @@
 # 🎄 Advent of Code 2024 Java Solutions 🌟
 
 ![Build Status](https://github.com/applicationx/advent-of-code-2024/actions/workflows/ci.yml/badge.svg)
-![Test Results](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/applicationx/8a0997d8fcd131e6d852e6cea09fa022/raw/test-results.json)
 
 
 Welcome to the **Advent of Code 2024 Java Solutions** repository! This project is dedicated to solving the exciting challenges of [Advent of Code](https://adventofcode.com) 2024 using **Java**. 🚀
