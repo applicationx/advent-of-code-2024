@@ -62,7 +62,7 @@ public class PartTwoTest {
                 .mapToInt(data -> data.middle())
                 .sum();
 
-        assertThat(sum).isEqualTo(123);
+        assertThat(sum).isEqualTo(5180);
 
     }
 }
